@@ -56,8 +56,10 @@ class WelcomeMail extends Mailable
     public function build()
     {
         return $this->from("rs12732@gmail.com", "Rohit")
+            ->subject("Welcome Onboard !!")
             ->attach(public_path('Documents/sample_2022.pdf'))
-            // ->cc()
+            ->attach(public_path('Documents/logo.png'))
+            ->cc('aadhar41@gmail.com')
             ->markdown('emails.welcome');
     }
 }

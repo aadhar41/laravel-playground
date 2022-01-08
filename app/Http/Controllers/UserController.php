@@ -7,6 +7,7 @@ use App\Models\User;;
 use Illuminate\Http\Request;
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendMailJob;
 
 class UserController extends Controller
 {
@@ -21,8 +22,15 @@ class UserController extends Controller
         $users = User::all();
         $user = User::first();
 
+        // send parameters
         // Mail::to('aadhargaur41@gmail.com')->send(new WelcomeMail($user->name, $user->email));
+
+        // send an instance
         Mail::to('aadhargaur41@gmail.com')->send(new WelcomeMail($user));
+
+        // SendMailJob::dispatch($user);
+        // SendMailJob::dispatch($user)
+        //     ->delay(now()->addMinutes(5));
 
         return view('welcome', compact("users"));
     }

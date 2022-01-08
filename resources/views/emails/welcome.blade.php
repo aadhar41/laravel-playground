@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hello {{$name}} [{{$email}}],
+# Hello {{$user->name}} [{{$user->email}}],
 
 Welcome to our website.
 

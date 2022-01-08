@@ -19,7 +19,7 @@ class WelcomeMail extends Mailable
      *
      * @var \App\Models\User
      */
-    protected $user;
+    public $user;
 
     /**
      * Name variable
@@ -42,10 +42,21 @@ class WelcomeMail extends Mailable
      * @param  \App\Models\User  $user
      * @return void
      */
-    public function __construct(User $user)
+    // public function __construct(User $user)
+    // {
+    //     $this->name = $user->name;
+    //     $this->email = $user->email;
+    // }
+
+
+    /**
+     * Create a new message instance.
+     * 
+     * @return void
+     */
+    public function __construct($user)
     {
-        $this->name = $user->name;
-        $this->email = $user->email;
+        $this->user = $user;
     }
 
     /**
@@ -60,6 +71,7 @@ class WelcomeMail extends Mailable
             ->attach(public_path('Documents/sample_2022.pdf'))
             ->attach(public_path('Documents/logo.png'))
             ->cc('aadhar41@gmail.com')
+            ->with('user', $this->user)
             ->markdown('emails.welcome');
     }
 }
